@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<text y='0.9em' font-size='90'>💍</text>
+</svg>">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Confirmação de Presença | Casamento</title>
+
+  <style>
+    :root{
+      --olive-900:#1f2a1d;
+      --olive-800:#2a3a26;
+      --olive-700:#3a4f35;
+      --olive-600:#4e6847;
+      --olive-500:#6b7f5f;
+      --card:#ffffff;
+      --text:#162016;
+      --muted:#5f6b5c;
+      --line:rgba(25,35,25,.12);
+      --accent:#4e6847;
+      --accent-2:#b8c2a5;
+      --shadow: 0 14px 40px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(78,104,71,.18), transparent 60%),
+        radial-gradient(900px 500px at 95% 10%, rgba(184,194,165,.22), transparent 55%),
+        radial-gradient(900px 600px at 15% 95%, rgba(78,104,71,.12), transparent 55%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'%3E%3Cg fill='none' stroke='%234e6847' stroke-opacity='.14' stroke-width='2'%3E%3Cpath d='M80 160c40-60 90-60 130 0 40 60 90 60 130 0'/%3E%3Cpath d='M110 250c30-40 70-40 100 0 30 40 70 40 100 0'/%3E%3Cpath d='M70 340c50-70 110-70 160 0 50 70 110 70 160 0'/%3E%3Ccircle cx='120' cy='160' r='22'/%3E%3Ccircle cx='250' cy='160' r='18'/%3E%3Ccircle cx='380' cy='160' r='22'/%3E%3Ccircle cx='160' cy='250' r='16'/%3E%3Ccircle cx='260' cy='250' r='14'/%3E%3Ccircle cx='360' cy='250' r='16'/%3E%3Ccircle cx='140' cy='340' r='22'/%3E%3Ccircle cx='260' cy='340' r='18'/%3E%3Ccircle cx='380' cy='340' r='22'/%3E%3C/g%3E%3Cg fill='%23b8c2a5' fill-opacity='.10'%3E%3Cpath d='M120 138c-10-20 5-38 20-38s30 18 20 38c-8 16-12 20-20 38-8-18-12-22-20-38z'/%3E%3Cpath d='M380 138c-10-20 5-38 20-38s30 18 20 38c-8 16-12 20-20 38-8-18-12-22-20-38z'/%3E%3Cpath d='M260 228c-8-16 4-30 16-30s24 14 16 30c-6 12-10 16-16 30-6-14-10-18-16-30z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: auto, auto, auto, 520px 520px;
+      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+    }
+
+    header{ padding:34px 18px 14px; text-align:center; }
+    .brand{
+      display:inline-flex; align-items:center; gap:12px;
+      padding:10px 14px; border-radius:999px;
+      background: rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.05);
+      margin-bottom:14px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(78,104,71,.10);
+    }
+    h1{ margin:0 0 6px; font-size: clamp(26px, 3.2vw, 36px); letter-spacing:.4px; color: var(--olive-900); }
+    .sub{ margin:0; color:var(--muted); font-size:14px; }
+
+    .wrap{ max-width:1040px; margin:0 auto; padding: 0 18px 44px; }
+
+    nav{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    button{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      color: var(--olive-900);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight:700;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      backdrop-filter: blur(8px);
+    }
+    button:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+    button.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--olive-700));
+      color:#fff;
+      box-shadow: 0 12px 30px rgba(78,104,71,.22);
+    }
+    button:disabled{ opacity:.55; cursor:not-allowed; transform:none; box-shadow:none; }
+
+    .grid{ display:grid; gap:16px; grid-template-columns: 1fr; }
+    @media (min-width: 960px){ .grid{ grid-template-columns: 1.05fr .95fr; } }
+
+    .card{
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:18px;
+      color: var(--olive-900);
+      display:flex; align-items:center; gap:10px;
+    }
+    .card h2::before{
+      content:"";
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(78,104,71,.10);
+      display:inline-block;
+    }
+
+    label{ display:block; font-size:13px; color:var(--muted); margin:10px 0 6px; font-weight:600; }
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border: 1px solid rgba(31,42,29,.14);
+      border-radius: 14px;
+      outline: none;
+      background: rgba(255,255,255,.9);
+      transition: box-shadow .12s ease, border-color .12s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(78,104,71,.5);
+      box-shadow: 0 0 0 4px rgba(78,104,71,.14);
+    }
+    textarea{ min-height:90px; resize:vertical; }
+
+    .row{ display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 640px){ .row{ grid-template-columns: 1fr 1fr; } }
+
+    .pill{
+      font-size:12px; padding:4px 10px; border-radius:999px;
+      border:1px solid rgba(31,42,29,.12); color:var(--muted);
+      display:inline-block; background: rgba(255,255,255,.65);
+    }
+
+    .actions{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
+
+    .note{
+      padding: 12px 14px; border-radius: 16px;
+      border: 1px solid rgba(78,104,71,.22);
+      background: linear-gradient(135deg, rgba(184,194,165,.24), rgba(78,104,71,.08));
+      color: var(--olive-900);
+    }
+    .note b{ color: var(--olive-900); }
+
+    .toolbar{ display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 12px; }
+    .items{ display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .items{ grid-template-columns: 1fr 1fr; } }
+
+    .item{
+      border: 1px solid rgba(31,42,29,.12);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,.72);
+    }
+    .itemTop{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .item h3{ margin:0; font-size:16px; color: var(--olive-900); }
+    .item small{ color:var(--muted); }
+
+    .status{
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(31,42,29,.12);
+      background: rgba(255,255,255,.6);
+      white-space:nowrap; font-weight:700;
+    }
+    .status.ok{ color:#1f5132; border-color: rgba(31,81,50,.20); background: rgba(31,81,50,.06); }
+    .status.busy{ color:#7a4b11; border-color: rgba(122,75,17,.20); background: rgba(122,75,17,.06); }
+
+    /* Contagem regressiva */
+    .countdownWrap{ display:grid; gap:10px; margin-top:12px; }
+    .countdownGrid{ display:grid; gap:10px; grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 520px){ .countdownGrid{ grid-template-columns: repeat(2, 1fr); } }
+    .cdBox{
+      border: 1px solid rgba(31,42,29,.12);
+      background: rgba(255,255,255,.70);
+      border-radius: 16px;
+      padding: 12px;
+      text-align:center;
+    }
+    .cdNum{ font-size:22px; font-weight:900; color:var(--olive-900); letter-spacing:.4px; }
+    .cdLbl{ font-size:12px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.8px; }
+
+    /* Como chegar */
+    .howBox{
+      border: 1px dashed rgba(31,42,29,.20);
+      background: rgba(255,255,255,.62);
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .mini{ color:var(--muted); font-size:13px; margin:6px 0 0; }
+
+    dialog{ border:none; border-radius: 18px; padding:0; width: min(560px, 92vw); box-shadow: 0 20px 70px rgba(0,0,0,.28); }
+    dialog::backdrop{ background: rgba(10,12,10,.45); }
+    .modalHead{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      border-bottom: 1px solid rgba(31,42,29,.10);
+      padding: 14px 16px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+    }
+    .modalHead h3{ margin:0; font-size:16px; color: var(--olive-900); }
+    .modal{ padding: 16px; background: rgba(255,255,255,.92); }
+    .modalFoot{
+      border-top: 1px solid rgba(31,42,29,.10);
+      padding: 12px 16px;
+      display:flex; justify-content:flex-end; gap:10px;
+      background: rgba(255,255,255,.88);
+    }
+
+    .success{
+      color:#1f5132; background: rgba(31,81,50,.08);
+      border:1px solid rgba(31,81,50,.22);
+      padding:10px 12px; border-radius:14px; margin-top:10px; display:none; font-weight:600;
+    }
+    .danger{
+      color:#7f1d1d; background: rgba(127,29,29,.08);
+      border:1px solid rgba(127,29,29,.22);
+      padding:10px 12px; border-radius:14px; margin-top:10px; display:none; font-weight:600;
+    }
+
+    footer{ text-align:center; color: var(--muted); padding: 22px 0 8px; font-size:13px; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <span style="font-weight:700;color:var(--olive-900);">Casamento</span>
+      <span style="color:var(--muted);">•</span>
+      <span style="color:var(--muted);">RSVP & Presentes</span>
+    </div>
+
+    <h1>Alexsander & Maria Eduarda</h1>
+    <p class="sub">22/08/2026 • Fazenda Sobradinho</p>
+
+    <nav>
+      <button class="primary" onclick="go('rsvp')">Confirmar Presença (RSVP)</button>
+      <button onclick="go('presentes')">Lista de Presentes</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- RSVP -->
+    <section id="rsvp" class="grid">
+      <div class="card">
+        <h2>Confirmação de Presença</h2>
+        <p class="sub">Por favor, confirme sua presença para nos ajudar na organização.</p>
+
+        <!-- Contagem regressiva -->
+        <div class="countdownWrap" aria-label="Contagem regressiva">
+          <div class="pill">Faltam</div>
+          <div class="countdownGrid">
+            <div class="cdBox"><div class="cdNum" id="cdDias">—</div><div class="cdLbl">Dias</div></div>
+            <div class="cdBox"><div class="cdNum" id="cdHoras">—</div><div class="cdLbl">Horas</div></div>
+            <div class="cdBox"><div class="cdNum" id="cdMin">—</div><div class="cdLbl">Minutos</div></div>
+            <div class="cdBox"><div class="cdNum" id="cdSeg">—</div><div class="cdLbl">Segundos</div></div>
+          </div>
+          <p class="mini" id="cdTexto"></p>
+        </div>
+
+        <!-- Como chegar -->
+        <div class="howBox">
+          <div class="pill">Como chegar</div>
+          <p style="margin:10px 0 0; font-weight:800; color:var(--olive-900);" id="localNome"></p>
+          <p class="mini" id="enderecoTexto"></p>
+
+          <div class="actions" style="margin-top:10px;">
+            <button type="button" class="primary" onclick="abrirMapa('google')">Abrir no Google Maps</button>
+            <button type="button" onclick="abrirMapa('waze')">Abrir no Waze</button>
+            <button type="button" onclick="copiarEndereco()">Copiar endereço</button>
+          </div>
+
+          <p class="mini">Dica: depois que você colocar o endereço completo, os botões vão abrir o trajeto certinho.</p>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(31,42,29,.10);margin:16px 0;">
+
+        <form id="rsvpForm">
+          <label>Nome completo *</label>
+          <input name="nome" required placeholder="Ex: João da Silva" />
+
+          <div class="row">
+            <div>
+              <label>Você vai? *</label>
+              <select name="vai" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Vou</option>
+                <option>Não vou</option>
+              </select>
+            </div>
+            <div>
+              <label>Quantas pessoas irão? *</label>
+              <input name="qtd" type="number" min="1" max="10" value="1" required />
+              <div class="pill" style="margin-top:6px;">Apenas conforme o convite</div>
+            </div>
+          </div>
+
+          <label>Nomes dos acompanhantes (se houver)</label>
+          <textarea name="acomp" placeholder="Ex: Maria, Pedro..."></textarea>
+
+          <label>Observações (restrição alimentar, acessibilidade etc.)</label>
+          <textarea name="obs" placeholder="Escreva aqui, se necessário"></textarea>
+
+          <div class="actions">
+            <button class="primary" type="submit">Enviar confirmação</button>
+            <button type="button" onclick="exportar('rsvps')">Exportar RSVPs (JSON)</button>
+            <button type="button" onclick="limpar('rsvps')">Limpar RSVPs</button>
+          </div>
+
+          <div id="rsvpOk" class="success">Presença registrada com sucesso! Obrigado 💛</div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Resumo</h2>
+        <p class="sub">Aqui aparece um resumo das confirmações registradas neste dispositivo.</p>
+        <div id="rsvpResumo"></div>
+
+        <hr style="border:none;border-top:1px solid rgba(31,42,29,.10);margin:14px 0;">
+
+        <p class="sub">
+          Dica: este arquivo é uma versão “offline” (salva no seu navegador). Para funcionar online com todos os convidados ao mesmo tempo,
+          depois dá pra ligar em um banco (Firebase/Supabase/Planilha).
+        </p>
+      </div>
+    </section>
+
+    <!-- PRESENTES -->
+    <section id="presentes" style="display:none;">
+      <div class="card">
+        <h2>Lista de Presentes</h2>
+
+        <div class="note">
+          <b>Importante:</b> Tivemos a ideia de fazer a lista por aqui para evitar presentes repetidos. 💛
+          <br>Por favor, ao escolher um item, confirme a reserva e escreva o que você vai dar (marca/modelo/cor, se quiser).
+          Assim conseguimos organizar tudo direitinho!
+        </div>
+
+        <div class="toolbar">
+          <input id="busca" placeholder="Buscar presente..." oninput="renderPresentes()" />
+          <select id="filtroCat" onchange="renderPresentes()"></select>
+          <select id="filtroStatus" onchange="renderPresentes()">
+            <option value="Todos">Status: Todos</option>
+            <option value="Disponível">Disponível</option>
+            <option value="Reservado">Reservado</option>
+          </select>
+
+          <button type="button" onclick="exportar('presentes')">Exportar Presentes (JSON)</button>
+          <button type="button" onclick="resetPresentes()">Resetar Reservas</button>
+        </div>
+
+        <div id="listaPresentes" class="items"></div>
+
+        <hr style="border:none;border-top:1px solid rgba(31,42,29,.10);margin:16px 0;">
+
+        <!-- Adicionar presente (fica aqui na lista) -->
+        <h2>Não achou na lista?</h2>
+        <p class="sub">Você pode sugerir um novo presente aqui. Se o nome já existir e estiver reservado, vamos confirmar antes de adicionar.</p>
+
+        <form id="addPresenteForm" class="row">
+          <div>
+            <label>Nome do presente *</label>
+            <input name="nome" required placeholder="Ex: Ventilador de mesa" />
+          </div>
+          <div>
+            <label>Categoria *</label>
+            <input name="categoria" required placeholder="Ex: Quarto / Sala / Cozinha" />
+          </div>
+          <div style="grid-column:1/-1;" class="actions">
+            <button class="primary" type="submit">Adicionar presente</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL RESERVA -->
+  <dialog id="modal">
+    <div class="modalHead">
+      <h3 id="modalTitulo">Reservar presente</h3>
+      <button type="button" onclick="fecharModal()">Fechar</button>
+    </div>
+    <div class="modal">
+      <form id="reservaForm">
+        <input type="hidden" name="id" />
+        <label>Seu nome *</label>
+        <input name="convidado" required placeholder="Ex: João da Silva" />
+
+        <label>WhatsApp *</label>
+        <input name="whats" required placeholder="(00) 00000-0000" />
+
+        <label>Escreva exatamente o que você vai dar *</label>
+        <textarea name="descricao" required placeholder="Ex: Air Fryer 4L, marca X, cor preta"></textarea>
+
+        <div class="modalFoot">
+          <button type="button" onclick="fecharModal()">Cancelar</button>
+          <button class="primary" type="submit">Confirmar reserva</button>
+        </div>
+      </form>
+      <div id="reservaOk" class="success">Reserva confirmada! Obrigado 💛</div>
+    </div>
+  </dialog>
+
+<script>
+  const LS_RSVP = "wedding_rsvps_v1";
+  const LS_PRESENTES = "wedding_presentes_v1";
+
+  // ====== CONFIG: data do casamento ======
+  const WEDDING_DATE_ISO = "2026-08-22T00:00:00-03:00";
+
+  // ====== CONFIG: local ======
+  const LOCAL_NOME = "Fazenda Sobradinho";
+  const LOCAL_ENDERECO = "Fazenda Sobradinho, (COLOQUE AQUI O ENDEREÇO COMPLETO), Brasil";
+
+  const presentesSeed = [
+    "Jogo de Panelas","Frigideira Antiaderente","Panela de Pressão","Air Fryer","Liquidificador","Batedeira","Cafeteira Elétrica","Sanduicheira","Processador de Alimentos","Micro-ondas",
+    "Conjunto de Pratos","Conjunto de Copos","Conjunto de Taças","Conjunto de Talheres","Jogo Americano","Tábua de Corte","Escorredor de Louça","Potes Herméticos","Jarra de Vidro","Garrafa Térmica",
+    "Jogo de Facas","Afiador de Facas","Conjunto de Assadeiras","Forma para Bolo","Kit Utensílios Silicone","Escumadeira/Concha/Colher de Pau","Travessas de Vidro","Jogo de Sobremesa","Pipoqueira Elétrica","Panela Elétrica",
+    "Mixer","Chaleira Elétrica","Moedor de Café","Kit Churrasco","Cortador de Legumes","Ralador Multifuncional","Balança de Cozinha","Peneiras","Abridor de Vinho/Saca-rolhas","Potes para Temperos",
+    "Jogo de Cama Casal","Jogo de Cama Queen","Edredom","Cobertor","Travesseiros","Protetor de Colchão","Cortinas para Quarto","Abajur","Relógio Despertador","Organizador de Guarda-Roupa",
+    "Cabides (kit)","Porta-Joias","Kit Colcha","Roupão (casal)","Capa de Travesseiro (kit)","Manta para cama","Aromatizador de ambiente","Espelho de Mesa","Luminária de Cabeceira","Saia para cama box",
+    "Tapete para Sala","Cortinas para Sala","Almofadas Decorativas","Manta Decorativa","Rack para TV","Painel para TV","Luminária","Quadros Decorativos","Espelho Decorativo","Aparador",
+    "Mesa de Centro","Mesa Lateral","Poltrona Decorativa","Estante","Cesto Decorativo","Bandeja Decorativa","Porta-retratos (kit)","Relógio de Parede","Centro de Mesa","Aromatizador/difusor",
+    "Jogo de Toalhas","Tapete de Banheiro","Cortina para Box","Porta-Sabonete","Porta-Escova","Lixeira para Banheiro","Organizador de Pia","Prateleira","Suporte para Papel Higiênico","Dispenser de Sabonete",
+    "Suporte de Toalhas","Kit Spa Banheiro","Espelho para Banheiro","Cesto organizador","Conjunto de potes banheiro",
+    "Cesto de Roupas","Varal de Chão","Tábua de Passar","Ferro de Passar","Aspirador de Pó","Balde","Rodo","Vassoura","Pá de Lixo","Organizador de Produtos",
+    "Suporte de Vassouras","Passadeira a Vapor","Pregadores (kit)","Roupas de cama (saco a vácuo)","Carrinho Organizador",
+    "Kit Ferramentas","Extensão Elétrica","Filtro de Linha","Caixa Organizadora","Organizador de Documentos","Mala de Viagem Média","Mochila de Viagem","Power Bank","Suporte para Notebook","Vale-Presente (loja)"
+  ];
+
+  // ========= Helpers =========
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[m]));
+  }
+  function normalizeName(s){
+    return String(s||"")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"") // remove acentos
+      .replace(/\s+/g," ");
+  }
+
+  function categoriaAuto(nome){
+    const n = nome.toLowerCase();
+    if (["panela","air","liquid","bated","caf","sandu","process","micro","prato","copo","taça","talher","tábua","escorr","pote","jarra","garrafa","faca","assad","forma","utens","concha","travessa","pipo","mixer","chaleira","moedor","churr","cort","ral","balança","peneira","temper"].some(k=>n.includes(k))) return "Cozinha";
+    if (["cama","edred","cobert","traves","colch","cortina","abaj","despert","guarda","cabide","joias","colcha","roupão","aromat","espelho","lumin","saia"].some(k=>n.includes(k))) return "Quarto";
+    if (["sala","tapete","almof","rack","painel","quadro","aparador","centro","poltr","estante","mesa","porta-retr","relóg","bandeja"].some(k=>n.includes(k))) return "Sala";
+    if (["banheiro","toalha","box","sabon","escova","lixeira","papel","dispenser","spa"].some(k=>n.includes(k))) return "Banheiro";
+    if (["lav","varal","pass","ferro","aspir","balde","rodo","vassoura","pá","preg"].some(k=>n.includes(k))) return "Lavanderia";
+    return "Utilidades";
+  }
+
+  function loadPresentes(){
+    const raw = localStorage.getItem(LS_PRESENTES);
+    if(raw) return JSON.parse(raw);
+    const seed = presentesSeed.map((nome, idx)=>({
+      id: idx+1,
+      nome,
+      categoria: categoriaAuto(nome),
+      status: "Disponível",
+      reserva: null
+    }));
+    localStorage.setItem(LS_PRESENTES, JSON.stringify(seed));
+    return seed;
+  }
+  function savePresentes(p){ localStorage.setItem(LS_PRESENTES, JSON.stringify(p)); }
+
+  function loadRsvps(){
+    const raw = localStorage.getItem(LS_RSVP);
+    return raw ? JSON.parse(raw) : [];
+  }
+  function saveRsvps(list){ localStorage.setItem(LS_RSVP, JSON.stringify(list)); }
+
+  function go(id){
+    document.querySelectorAll("main section").forEach(s=>s.style.display="none");
+    document.getElementById(id).style.display = id==="rsvp" ? "grid" : "block";
+    if(id==="rsvp") renderResumoRsvp();
+    if(id==="presentes") { fillCategorias(); renderPresentes(); }
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  // ====== Contagem regressiva ======
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function updateCountdown(){
+    const target = new Date(WEDDING_DATE_ISO).getTime();
+    const now = Date.now();
+    const diff = target - now;
+
+    const txt = document.getElementById("cdTexto");
+    const dEl = document.getElementById("cdDias");
+    const hEl = document.getElementById("cdHoras");
+    const mEl = document.getElementById("cdMin");
+    const sEl = document.getElementById("cdSeg");
+
+    if(diff <= 0){
+      dEl.textContent = "0"; hEl.textContent = "00"; mEl.textContent = "00"; sEl.textContent = "00";
+      txt.textContent = "Chegou o grande dia! 🎉";
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / (3600*24));
+    const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    dEl.textContent = String(days);
+    hEl.textContent = pad2(hours);
+    mEl.textContent = pad2(minutes);
+    sEl.textContent = pad2(seconds);
+
+    txt.textContent = `Nos vemos em ${days} dia(s)!`;
+  }
+
+  // ====== Como chegar ======
+  function encode(s){ return encodeURIComponent(s); }
+  function abrirMapa(app){
+    const query = `${LOCAL_NOME} - ${LOCAL_ENDERECO}`.trim();
+    if(app === "waze"){
+      window.open(`https://waze.com/ul?q=${encode(query)}&navigate=yes`, "_blank");
+    } else {
+      window.open(`https://www.google.com/maps/search/?api=1&query=${encode(query)}`, "_blank");
+    }
+  }
+  async function copiarEndereco(){
+    const texto = `${LOCAL_NOME} — ${LOCAL_ENDERECO}`;
+    try{
+      await navigator.clipboard.writeText(texto);
+      alert("Endereço copiado!");
+    }catch(e){
+      const ta = document.createElement("textarea");
+      ta.value = texto;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      alert("Endereço copiado!");
+    }
+  }
+  function renderEndereco(){
+    document.getElementById("localNome").textContent = LOCAL_NOME;
+    document.getElementById("enderecoTexto").textContent = `Endereço: ${LOCAL_ENDERECO}`;
+  }
+
+  // ====== RSVP ======
+  const rsvpForm = document.getElementById("rsvpForm");
+  rsvpForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const fd = new FormData(rsvpForm);
+    const item = {
+      nome: (fd.get("nome")||"").trim(),
+      vai: fd.get("vai"),
+      qtd: Number(fd.get("qtd")),
+      acompanhantes: (fd.get("acomp")||"").trim(),
+      obs: (fd.get("obs")||"").trim(),
+      criadoEm: new Date().toISOString()
+    };
+    const list = loadRsvps();
+    list.push(item);
+    saveRsvps(list);
+    document.getElementById("rsvpOk").style.display="block";
+    setTimeout(()=>document.getElementById("rsvpOk").style.display="none", 2500);
+    rsvpForm.reset();
+    rsvpForm.querySelector('[name="qtd"]').value = 1;
+    renderResumoRsvp();
+  });
+
+  function renderResumoRsvp(){
+    const list = loadRsvps();
+    const total = list.length;
+    const vou = list.filter(x=>x.vai==="Vou").reduce((acc,x)=>acc + (x.qtd||1), 0);
+    const naoVou = list.filter(x=>x.vai==="Não vou").length;
+
+    const el = document.getElementById("rsvpResumo");
+    el.innerHTML = `
+      <div class="pill">Confirmações registradas: <b>${total}</b></div>
+      <div style="margin-top:10px;" class="pill">Total de pessoas confirmadas ("Vou"): <b>${vou}</b></div>
+      <div style="margin-top:10px;" class="pill">Respostas "Não vou": <b>${naoVou}</b></div>
+      <div style="margin-top:14px;color:var(--muted);font-size:13px;">
+        Observação: nesta versão offline, tudo fica salvo apenas neste navegador.
+      </div>
+    `;
+  }
+
+  // ====== Presentes ======
+  function fillCategorias(){
+    const p = loadPresentes();
+    const cats = ["Todas", ...Array.from(new Set(p.map(x=>x.categoria))).sort()];
+    const sel = document.getElementById("filtroCat");
+    sel.innerHTML = cats.map(c=>`<option value="${c}">Categoria: ${c}</option>`).join("");
+  }
+
+  function renderPresentes(){
+    const p = loadPresentes();
+    const q = document.getElementById("busca").value.toLowerCase().trim();
+    const cat = document.getElementById("filtroCat").value || "Todas";
+    const st = document.getElementById("filtroStatus").value || "Todos";
+
+    let list = p.slice();
+    if(q) list = list.filter(x=>x.nome.toLowerCase().includes(q));
+    if(cat !== "Todas") list = list.filter(x=>x.categoria===cat);
+    if(st !== "Todos") list = list.filter(x=>x.status===st);
+
+    const el = document.getElementById("listaPresentes");
+    el.innerHTML = list.map(x=>{
+      const reservado = x.status==="Reservado";
+      return `
+        <div class="item">
+          <div class="itemTop">
+            <div>
+              <h3>${escapeHtml(x.nome)}</h3>
+              <small>${escapeHtml(x.categoria)}</small>
+            </div>
+            <span class="status ${reservado ? "busy":"ok"}">${x.status}</span>
+          </div>
+          ${reservado && x.reserva ? `<div style="margin-top:8px;color:var(--muted);font-size:13px;">
+            Reservado ✅
+          </div>` : ""}
+          <div class="actions">
+            <button class="primary" ${reservado?"disabled":""} onclick="abrirReserva(${x.id})">Vou presentear este item</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function abrirReserva(id){
+    const p = loadPresentes();
+    const item = p.find(x=>x.id===id);
+    if(!item || item.status==="Reservado") return;
+
+    document.getElementById("modalTitulo").textContent = `Reservar: ${item.nome}`;
+    const f = document.getElementById("reservaForm");
+    f.reset();
+    f.id.value = id;
+    document.getElementById("reservaOk").style.display="none";
+    document.getElementById("modal").showModal();
+  }
+  function fecharModal(){ document.getElementById("modal").close(); }
+
+  document.getElementById("reservaForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const id = Number(fd.get("id"));
+    const convidado = (fd.get("convidado")||"").trim();
+    const whats = (fd.get("whats")||"").trim();
+    const descricao = (fd.get("descricao")||"").trim();
+
+    const p = loadPresentes();
+    const item = p.find(x=>x.id===id);
+    if(!item || item.status==="Reservado") return;
+
+    item.status = "Reservado";
+    item.reserva = { convidado, whats, descricao, criadoEm: new Date().toISOString() };
+    savePresentes(p);
+
+    document.getElementById("reservaOk").style.display="block";
+    setTimeout(()=>{
+      fecharModal();
+      renderPresentes();
+    }, 900);
+  });
+
+  function resetPresentes(){
+    if(!confirm("Deseja resetar todas as reservas?")) return;
+    localStorage.removeItem(LS_PRESENTES);
+    fillCategorias();
+    renderPresentes();
+  }
+
+  // ====== Adicionar novo presente (na lista) ======
+  document.getElementById("addPresenteForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const nome = (fd.get("nome")||"").trim();
+    const categoria = (fd.get("categoria")||"").trim();
+    if(!nome || !categoria) return;
+
+    const p = loadPresentes();
+    const nomeNorm = normalizeName(nome);
+
+    // Procura itens com mesmo nome (normalizado)
+    const iguais = p.filter(x => normalizeName(x.nome) === nomeNorm);
+
+    // Se já existe e está disponível, não adiciona duplicado
+    const existeDisponivel = iguais.some(x => x.status === "Disponível");
+    if(existeDisponivel){
+      alert("Este item já existe na lista e está disponível. Procure por ele e selecione 🙂");
+      return;
+    }
+
+    // Se já existe e está reservado, pede confirmação para permitir duplicado
+    const existeReservado = iguais.some(x => x.status === "Reservado");
+    if(existeReservado){
+      const ok = confirm("Este item já foi selecionado por outra pessoa , você tem certeza que deseja inclui-lo?");
+      if(!ok) return;
+    }
+
+    const nextId = Math.max(...p.map(x=>x.id)) + 1;
+    p.push({ id: nextId, nome, categoria, status:"Disponível", reserva:null });
+    savePresentes(p);
+
+    e.target.reset();
+    fillCategorias();
+    renderPresentes();
+    alert("Presente adicionado à lista!");
+  });
+
+  // init
+  renderEndereco();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  go("rsvp");
+</script>
+</body>
+</html>
