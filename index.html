@@ -403,27 +403,124 @@
     </div>
   </dialog>
 
-<script>
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyB_V13z-NYNSsLYbu2QCISabs9U-jj9Oi4",
-    authDomain: "casamento-cf5a9.firebaseapp.com",
-    projectId: "casamento-cf5a9",
-    storageBucket: "casamento-cf5a9.firebasestorage.app",
-    messagingSenderId: "660963578642",
-    appId: "1:660963578642:web:b10fc3bd968b69334759cb",
-    measurementId: "G-QYY1KSNTFF"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyB_V13z-NYNSsLYbu2QCISabs9U-jj9Oi4",
+  authDomain: "casamento-cf5a9.firebaseapp.com",
+  projectId: "casamento-cf5a9",
+  storageBucket: "casamento-cf5a9.firebasestorage.app",
+  messagingSenderId: "660963578642",
+  appId: "1:660963578642:web:b10fc3bd968b69334759cb"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  // deixar global pra usar no resto do código
-  window.db = db;
-  window.firebaseFunctions = { collection, addDoc, getDocs, updateDoc, doc };
+const rsvpRef = collection(db, "rsvps");
+const presentesRef = collection(db, "presentes");
+
+
+// ================= RSVP =================
+
+document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const fd = new FormData(e.target);
+
+  await addDoc(rsvpRef, {
+    nome: fd.get("nome"),
+    vai: fd.get("vai"),
+    qtd: Number(fd.get("qtd")),
+    acompanhantes: fd.get("acomp"),
+    obs: fd.get("obs"),
+    criadoEm: new Date()
+  });
+
+  alert("Presença confirmada!");
+
+  go("presentes"); // REDIRECIONA
+});
+
+
+// ================= PRESENTES =================
+
+let listaPresentes = [];
+
+async function carregarPresentes() {
+  const snapshot = await getDocs(presentesRef);
+
+  if (snapshot.empty) {
+    // primeira vez: criar lista inicial
+    const base = ["Air Fryer", "Liquidificador", "Jogo de Panelas"];
+
+    for (let item of base) {
+      await addDoc(presentesRef, {
+        nome: item,
+        status: "Disponível",
+        reserva: null
+      });
+    }
+  }
+}
+
+carregarPresentes();
+
+onSnapshot(presentesRef, (snapshot) => {
+  listaPresentes = [];
+  snapshot.forEach(docSnap => {
+    listaPresentes.push({
+      id: docSnap.id,
+      ...docSnap.data()
+    });
+  });
+
+  renderPresentes();
+});
+
+
+function renderPresentes() {
+  const el = document.getElementById("listaPresentes");
+
+  el.innerHTML = listaPresentes.map(item => `
+    <div class="item">
+      <h3>${item.nome}</h3>
+      <p>${item.status}</p>
+      <button ${item.status === "Reservado" ? "disabled" : ""} onclick="reservar('${item.id}')">
+        Escolher
+      </button>
+    </div>
+  `).join("");
+}
+
+
+window.reservar = async (id) => {
+  const nome = prompt("Seu nome:");
+  const presente = prompt("O que você vai dar:");
+
+  const ref = doc(db, "presentes", id);
+
+  await updateDoc(ref, {
+    status: "Reservado",
+    reserva: {
+      nome,
+      presente
+    }
+  });
+
+  alert("Presente reservado!");
+};
+
 </script>
 </body>
 </html>
